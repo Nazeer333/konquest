@@ -1,0 +1,13 @@
+<!-- templates/registration/login.html -->
+
+{% extends "base.html" %}  <!-- Extend your base template if you have one -->
+
+{% block content %}
+  <h2>Login</h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Login</button>
+  </form>
+  <a href="{% url 'password_reset' %}">Forgot password?</a>
+{% endblock %}

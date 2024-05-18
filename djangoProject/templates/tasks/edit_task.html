@@ -1,0 +1,8 @@
+<!-- taskMgmt/edit_task.html -->
+
+<!-- Structure similar to your task creation form, but for editing -->
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Save Changes</button>
+</form>

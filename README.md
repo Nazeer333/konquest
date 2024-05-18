@@ -1,2 +1,2 @@
-# konquest
-deployment for konquest
+# KonQuestDeploy
+Deployment repo for KonQuest

@@ -1,0 +1,38 @@
+<!-- templates/clues/clue_list.html -->
+
+{% extends "base.html" %}
+{% block content %}
+  <h2>Clue List</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Location</th>
+        <th>Task</th>
+        {% if request.user.is_superuser %}
+        <th>Actions</th>
+        {% endif %}
+      </tr>
+    </thead>
+    <tbody>
+      {% for clue in clues %}
+        <tr>
+          <td>{{ clue.name }}</td>
+          <td>{{ clue.description }}</td>
+          <td>{{ clue.location }}</td>
+          <td>{{ clue.task }}</td>
+          {% if request.user.is_superuser %}
+          <td>
+            <a href="{% url 'edit_clue' clue.id %}" class="btn btn-primary btn-sm">Edit</a>
+            <a href="{% url 'delete_clue' clue.id %}" class="btn btn-danger btn-sm">Delete</a>
+          </td>
+          {% endif %}
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% if request.user.is_superuser %}
+  <a href="{% url 'add_clue' %}" class="btn btn-success">Add Clue</a>
+  {% endif %}
+{% endblock %}

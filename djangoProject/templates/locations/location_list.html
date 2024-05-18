@@ -1,0 +1,31 @@
+<!-- templates/locations/location_list.html -->
+{% extends 'base.html' %}
+{% block content %}
+  <h2>Location List</h2>
+  <a href="{% url 'add_location' %}" class="btn btn-primary">Add Location</a>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Latitude</th>
+        <th>Longitude</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for location in locations %}
+        <tr>
+          <td>{{ location.name }}</td>
+          <td>{{ location.description }}</td>
+          <td>{{ location.latitude }}</td>
+          <td>{{ location.longitude }}</td>
+          <td>
+            <a href="{% url 'edit_location' location.id %}" class="btn btn-secondary">Edit</a>
+            <a href="{% url 'delete_location' location.id %}" class="btn btn-danger">Delete</a>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

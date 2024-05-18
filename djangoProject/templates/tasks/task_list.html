@@ -1,0 +1,45 @@
+<!-- templates/tasks/task_list.html -->
+
+
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Task List</h2>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Point Value</th>
+                <th>Hunt</th>
+                <th>Location</th>
+                {% if user.is_superuser %}
+                <th>Actions</th>
+                {% endif %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for task in tasks %}
+            <tr>
+                <td>{{ task.name }}</td>
+                <td>{{ task.description }}</td>
+                <td>{{ task.point_value }}</td>
+                <td>{{ task.hunt }}</td>
+                <td>{{ task.location }}</td>
+                {% if user.is_superuser %}
+                <td>
+                    <a href="{% url 'edit_task' task.id %}" class="btn btn-primary btn-sm">Edit</a>
+                    <a href="{% url 'delete_task' task.id %}" class="btn btn-danger btn-sm">Delete</a>
+                </td>
+                {% endif %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    {% if user.is_superuser %}
+    <a href="{% url 'add_task' %}" class="btn btn-success">Add Task</a>
+    {% endif %}
+</div>
+{% endblock %}

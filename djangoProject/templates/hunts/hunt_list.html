@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %}Hunt List{% endblock %}
+
+{% block content %}
+<h2>Hunts</h2>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Start Time</th>
+            <th>End Time</th>
+            <th>Event Date</th>
+            <th>Location</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for hunt in hunts %}
+        <tr>
+            <td>{{ hunt.name }}</td>
+            <td>{{ hunt.description }}</td>
+            <td>{{ hunt.start_time }}</td>
+            <td>{{ hunt.end_time }}</td>
+            <td>{{ hunt.event_date }}</td>
+            <td>{{ hunt.location }}</td>
+            <td>
+                <a href="{% url 'edit_hunt' hunt.id %}" class="btn btn-primary">Edit</a>
+                <a href="{% url 'delete_hunt' hunt.id %}" class="btn btn-danger">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<a href="{% url 'add_hunt' %}" class="btn btn-success">Add Hunt</a>
+{% endblock %}

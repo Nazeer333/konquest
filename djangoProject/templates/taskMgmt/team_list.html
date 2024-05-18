@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}Teams{% endblock %}
+
+{% block content %}
+<h2>Team List</h2>
+<ul>
+  {% for team in teams %}
+    <li>
+      {{ team.name }} - Points: {{ team.points }}
+    </li>
+  {% endfor %}
+</ul>
+{% if request.user.is_superuser %}
+  <a href="{% url 'add_team' %}" class="btn btn-primary">Add New Team</a>
+{% endif %}
+{% endblock %}

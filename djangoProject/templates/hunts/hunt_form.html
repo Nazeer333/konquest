@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block title %}{% if form.instance.pk %}Edit{% else %}Add{% endif %} Hunt{% endblock %}
+
+{% block content %}
+<h2>{% if form.instance.pk %}Edit{% else %}Add{% endif %} Hunt</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-success">{% if form.instance.pk %}Update{% else %}Add{% endif %} Hunt</button>
+</form>
+{% endblock %}
